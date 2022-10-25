@@ -8,17 +8,22 @@ const engineer = require("./lib/engineer.js");
 const intern = require("./lib/intern.js");
 
 
+
+
+
+
+
 // Create questions for manager
-const managerQuestions = [
-    {
-        name: "Name",
-        message: "What is the team manager's name?"
-    }
-]
+// const managerQuestions = [
+//     {
+//         name: "Name",
+//         message: "What is the team manager's name?"
+//     }
+// ]
 
-// Create questions for other employees
-const newEmployeeQuestions = [
-    {
+// // Create questions for other employees
+// const newEmployeeQuestions = [
+//     {
 
-    }
-]
+//     }
+// ]
