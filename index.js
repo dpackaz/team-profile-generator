@@ -12,19 +12,19 @@ const teamMembers = [];
 // create questions for manager (first input when beginning the application)
 const managerQuestions = [
     {
-        name: "Name",
+        name: "name",
         message: "What is the team manager's name?"
     },
     {
-        name: "ID",
+        name: "id",
         message: "What is the team manager's ID number?"
     },
     {
-        name: "Email",
+        name: "email",
         message: "What is the team manager's email address?"
     },
     {
-        name: "Office",
+        name: "office",
         message: "What is the team manager's office number?"
     },
 ];
@@ -33,7 +33,7 @@ const managerQuestions = [
 const newEmployeeQuestion = [
     {
         type: "list",
-        name: "Position",
+        name: "position",
         message: "What is the new team member's position?",
         choices: ["Engineer", "Intern", "I'm finished. Complete my team."]
     },
@@ -42,38 +42,38 @@ const newEmployeeQuestion = [
 // create questions for new engineer
 const engineerQuestions = [
     {
-        name: "Name",
+        name: "name",
         message: "What is the new engineer's name?"
     },
     {
-        name: "ID",
+        name: "id",
         message: "What is the new engineer's ID number?"
     },
     {
-        name: "Email",
+        name: "email",
         message: "What is the new engineer's email address?"
     },
     {
-        name: "Github",
+        name: "github",
         message: "What is the new engineer's GitHub username?"
     },
 ];
 // create questions for new intern
 const internQuestions = [
     {
-        name: "Name",
+        name: "name",
         message: "What is the new intern's name?"
     },
     {
-        name: "ID",
+        name: "id",
         message: "What is the new intern's ID number?"
     },
     {
-        name: "Email",
+        name: "email",
         message: "What is the new intern's email address?"
     },
     {
-        name: "School",
+        name: "school",
         message: "What school does/did the new intern attend?"
     },
 ];
@@ -108,33 +108,47 @@ function askManagerQuestions() {
     });
 }
 
+// create a function to ask user questions to generate new engineer object
+function askEngineerQuestions() {
+    inquirer.prompt(engineerQuestions)
+    .then((response) => {
+        const addEngineer = new Engineer(
+            response.name,
+            response.id,
+            response.email,
+            response.github
+        );
+        teamMembers.push(addEngineer);
+        determineEmployeeQuestions();
+    });
+}
 
+// create a function to ask user questions to generate new intern object
+function askInternQuestions() {
+    inquirer.prompt(internQuestions)
+    .then((response) => {
+        const addIntern = new Intern(
+            response.name,
+            response.id,
+            response.email,
+            response.school
+        );
+        teamMembers.push(addIntern);
+        determineEmployeeQuestions();
+    });
+}
 
+// create a function to write the file and display error or success message on completion
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) =>
+    err ? console.error(err) : console.log("Successfully generated team profile!")
+    );
+}
 
-// const generateHTML = (answers) =>
-// `<!DOCTYPE html>
-// <html lang="en">
-// <head>
-//   <meta charset="UTF-8">
-//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-//   <title>Document</title>
-// </head>
-// <body>
-//   <div class="jumbotron jumbotron-fluid">
-//   <div class="container">
-//     <h1 class="display-4">Hi! My name is ${answers.name}</h1>
-//     <p class="lead">I am from ${answers.location}.</p>
-//     <h3>About Me <span class="badge badge-secondary">Contact Me</span></h3>
-//     <ul class="list-group">
-//       <li class="list-group-item">${answers.name}</li>
-//       <li class="list-group-item"${answers.getRole()}</li>
+// create function to initialize application
+function init() {
+    askManagerQuestions();
+}
 
-//       <li class="list-group-item">ID: ${answers.id}</li>
-//       <li class="list-group-item">Email: ${answers.email}</li>
-//       <li class="list-group-item">Office Number: ${answers.getOfficeNumber()}</li>
-//     </ul>
-//   </div>
-// </div>
-// </body>
-// </html>`;
+// call init function
+init();
