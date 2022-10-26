@@ -2,9 +2,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateHTML = require("./src/generateHTML.js");
-const manager = require("./lib/manager.js");
-const engineer = require("./lib/engineer.js");
-const intern = require("./lib/intern.js");
+const Manager = require("./lib/manager.js");
+const Engineer = require("./lib/engineer.js");
+const Intern = require("./lib/intern.js");
 
 // array to store new team members as they are added
 const teamMembers = [];
