@@ -8,7 +8,7 @@ const generateIntern = require("./generateIntern");
 // which card template it should be constructed with in the HTML
 const generateMyTeam = (data) => {
     const tempArray = [];
-    for (i = 0, i < data.length; i++) {
+    for (i = 0; i < data.length; i++) {
         const employee = data[i];
         const position = employee.getPosition();
 
@@ -54,7 +54,7 @@ function generateHtml(newTeamString) {
         </div>
         <div class="container">
             <div class="row">
-                <div class="d-flex flex-row flex-wrap justify-content-center">${renderMyTeam(newTeamString)}</div>
+                <div class="d-flex flex-row flex-wrap justify-content-center">${generateMyTeam(newTeamString)}</div>
             </div>
         </div>
 

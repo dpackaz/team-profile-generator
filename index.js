@@ -1,10 +1,10 @@
 // packages needed for application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateHTML = require("./src/generateHTML.js");
 const Manager = require("./lib/manager.js");
 const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
+const generateHtml = require("./src/generateHtml.js");
 
 // array to store new team members as they are added
 const teamMembers = [];
